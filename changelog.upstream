@@ -1,3 +1,53 @@
+commit f92e85cc5534c4dbfffef854aad33b759efa2d85
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 16:21:21 2024 -0400
+
+    Bisq support
+
+commit d7563ecf7b4ab87132052bdb7365599cd155e7b2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 16:06:29 2024 -0400
+
+    stop hardcoding paths
+
+commit 5a0fff8130db88593a4465e63add1d46b2f08239
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 16:05:53 2024 -0400
+
+    Bisq support
+
+commit 039d006fd9613944e075d94448c3cf5e8a49aafc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 12:37:21 2024 -0400
+
+    fix
+
+commit d01126f6a3c371f01f4133110aaff65ec33b3daa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 12:29:40 2024 -0400
+
+    dummy tor: towards Bisq 2 support
+
+commit bb0f039ef136ae5a3c56efbb6602ee25a3d78381
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 12:16:00 2024 -0400
+
+    comment
+
+commit e932c7573ffa1beec2cd9213e4d8995a60f03e33
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 11:53:10 2024 -0400
+
+    dummy tor: redirect `tor --version` to original Tor
+    
+    for Bisq 2 support
+
+commit f8ea5309e4a9f7286e155d0c3da82a1f68d326db
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Feb 2 12:49:37 2024 +0000
+
+    bumped changelog version
+
 commit 39103980272c4c757ff3b92dbeaf148f759137cd
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Feb 2 07:49:24 2024 -0500
