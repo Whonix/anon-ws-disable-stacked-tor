@@ -1,3 +1,15 @@
+commit 9350bb37d9190e8e8fd87392d9afa6606b1fc44d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jun 1 13:51:24 2024 -0400
+
+    fix: disable debugging
+
+commit e3acc74e6e619da33d6fd40229bacf72b4c04a76
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 24 22:54:28 2024 +0000
+
+    bumped changelog version
+
 commit f92e85cc5534c4dbfffef854aad33b759efa2d85
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Mar 24 16:21:21 2024 -0400
