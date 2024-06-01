@@ -54,10 +54,11 @@ verify_config() {
 }
 
 ## Debugging.
-## TODO: disable
-set -x
-exec 5>&1 1>> ~/toroutput
-exec 6>&2 2>> ~/toroutput
+## This can cause an issue during Qubes boot process.
+## tor[807]: /usr/bin/tor: line 59: /root/toroutput: Read-only file system
+#set -x
+#exec 5>&1 1>> ~/toroutput
+#exec 6>&2 2>> ~/toroutput
 
 args=("$@")
 true "args: ${args[@]}"
