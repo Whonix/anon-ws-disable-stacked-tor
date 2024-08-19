@@ -8,9 +8,7 @@
 #### category networking
 #### workstation_only yes
 #### description
-## dummy Tor wrapper doing nothing but wait forever.
+## <code>/usr/sbin/tor</code> simply executes <code>/usr/bin/tor</code>.
 #### meta end
 
-sleep infinity &
-wait "$!"
-exit 0
+exec /usr/bin/tor
