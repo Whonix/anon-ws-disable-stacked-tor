@@ -53,6 +53,12 @@ file_port_tuples+=" port#9051:9051 " ## Tor default ControlPort
 file_port_tuples+=" port#9151:9051 " ## Tor Browser Bundle default ControlPort
 file_port_tuples+=" port#9102:9102 " ## Thunderbird
 
+file_port_tuples+=" port6#9050:9050 " ## system Tor default SocksPort
+file_port_tuples+=" port6#9150:9150 " ## Tor Browser Bundle default SocksPort
+file_port_tuples+=" port6#9051:9051 " ## Tor default ControlPort
+file_port_tuples+=" port6#9151:9051 " ## Tor Browser Bundle default ControlPort
+file_port_tuples+=" port6#9102:9102 " ## Thunderbird
+
 ## Create a unix domain socket files such as
 ## /run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock and forward those
 ## to $GATEWAY_IP:9150 etc. See also:
@@ -146,6 +152,10 @@ for item in $file_port_tuples ; do
    if [ "$file_item" = "port" ]; then
       listen_where="127.0.0.1:$source_port"
       file_name="port_${source_port}"
+
+   elif [ "$file_item" = "port6" ]; then
+      listen_where="[::1]:$source_port"
+      file_name="port6_${source_port}"
 
    else
       listen_where="$file_item"
