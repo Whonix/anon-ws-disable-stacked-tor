@@ -20,5 +20,5 @@ Requires=anon-ws-disable-stacked-tor_autogen_port6_9151.socket
 #sudo /usr/libexec/anon-ws-disable-stacked-tor/systemd-unit-files-generator
 ## See Documentation:
 ## https://www.whonix.org/wiki/Redirect_Whonix-Workstation_Ports_or_Unix_Domain_Socket_Files_to_Whonix-Gateway
-ExecStart=/lib/systemd/systemd-socket-proxyd 10.152.152.10:9051
+ExecStart=/lib/systemd/systemd-socket-proxyd [fd19:c33d:88bc::10]:9051
 PrivateTmp=yes
