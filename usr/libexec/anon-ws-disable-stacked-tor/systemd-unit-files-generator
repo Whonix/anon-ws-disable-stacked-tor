@@ -117,7 +117,7 @@ else
       GATEWAY_IP="10.152.152.10"
    fi
    if [ "$GATEWAY_IP6" = "" ]; then
-      ## IP HARDCODED. Set GATEWAY_IP through a drop-in configuration snippet in /etc/anon-ws-disable-stacked-tor.d configuration folder instead.
+      ## IP HARDCODED. Set GATEWAY_IP6 through a drop-in configuration snippet in /etc/anon-ws-disable-stacked-tor.d configuration folder instead.
       GATEWAY_IP6="[fd19:c33d:88bc::10]"
    fi
 fi
