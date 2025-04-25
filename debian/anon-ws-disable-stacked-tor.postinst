@@ -35,8 +35,8 @@ configure_function() {
 ## <code>/etc/X11/Xsession.d/</code> hook to <code>source</code>
 ## <code>/usr/libexec/anon-ws-disable-stacked-tor/torbrowser.sh</code>
 
-   ## Add user "user" to the group "debian-tor", so user "user" can access Tor's control port.
-   ## User "user" already exists thanks to the dist-base-files package.
+   ## Add account "user" to the group "debian-tor", so account "user" can access Tor's control port.
+   ## Account "user" already exists thanks to the dist-base-files package.
    adduser --quiet user debian-tor
 
 #### meta end
