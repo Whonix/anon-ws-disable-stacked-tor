@@ -19,7 +19,7 @@
 ## with the following command line options:
 ## -f /home/user/.local/share/Bisq2/tor/torrc __OwningControllerProcess 8581
 ##
-# cat /home/user/.local/share/Bisq2/tor/torrc
+# cat -- /home/user/.local/share/Bisq2/tor/torrc
 # HashedControlPassword 16:9A4EA39F06ADB2F5609AFF1EC4784C1F03AA25713D0E828D731E657B16
 # ControlPort 127.0.0.1:43649
 # Log notice file /home/user/.local/share/Bisq2/tor/debug.log
@@ -27,7 +27,7 @@
 # SocksPort 43677
 # DisableNetwork 1
 ##
-# sudo cat /run/tor/control.txt
+# sudo cat -- /run/tor/control.txt
 # PORT=127.0.0.1:9052
 # PORT=127.0.0.1:44343
 # UNIX_PORT=/run/tor/control
@@ -35,7 +35,7 @@
 exit_handler() {
    if [ ! "$socat_pid_list" = "" ]; then
       for socat_pid_item in $socat_pid_list ; do
-         kill -s sigterm "$socat_pid_item" || true
+         kill -s sigterm -- "$socat_pid_item" || true
       done
    fi
    ## OnionShare will do that after Tor got killed by OnionShare.
@@ -111,19 +111,19 @@ done
 ## OnionShare support for configuration option "bundled Tor".
 ## Bisq 2 support.
 if [ ! "$file_name" = "" ]; then
-   DataDirectory="$(cat "$file_name" | grep DataDirectory | awk '{print $2}')"
-   ControlSocket="$(cat "$file_name" | grep ControlSocket | awk '{print $2}')"
-   CookieAuthFile="$(cat "$file_name" | grep CookieAuthFile | awk '{print $2}')"
-   SocksPort="$(cat "$file_name" | grep SocksPort | awk '{print $2}')"
+   DataDirectory="$(cat -- "$file_name" | grep -- DataDirectory | awk '{print $2}')"
+   ControlSocket="$(cat -- "$file_name" | grep -- ControlSocket | awk '{print $2}')"
+   CookieAuthFile="$(cat -- "$file_name" | grep -- CookieAuthFile | awk '{print $2}')"
+   SocksPort="$(cat -- "$file_name" | grep -- SocksPort | awk '{print $2}')"
    ## Bisq example Tor config:
    ## ControlPort 127.0.0.1:43649
-   ControlPort="$(cat "$file_name" | grep ControlPort | awk '{print $2}')"
+   ControlPort="$(cat -- "$file_name" | grep -- ControlPort | awk '{print $2}')"
 
    ## Example SocksPort:
    ## SocksPort=24883
    SocksPort=${SocksPort#"SocksPort="}
 
-   ControlPort=$(echo $ControlPort | cut -d ':' -f 2)
+   ControlPort=$(printf '%s\n' "$ControlPort" | cut -d ':' -f 2)
 
    mkdir -p "$DataDirectory"
 
@@ -145,11 +145,11 @@ if [ ! "$file_name" = "" ]; then
    fi
 fi
 
-if echo "$file_name" | grep --quiet --ignore-case "Bisq" ; then
+if printf '%s\n' "$file_name" | grep --quiet --ignore-case -- "Bisq" ; then
    ## Emulate creation of Tor debug.log that Bisq is waiting for.
    ## https://github.com/bisq-network/bisq2/issues/1894#issuecomment-2016924749
    mkdir --parents ~/.local/share/Bisq2/tor/
-   echo "
+   printf '%s\n' "
 Emulated log file created by: $0
 
 Mar 24 20:12:35.477 [notice] Opened Control listener connection (ready) on 127.0.0.1:${ControlPort}
