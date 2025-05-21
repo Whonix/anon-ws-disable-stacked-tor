@@ -13,5 +13,5 @@
 #### meta end
 
 if [ -x /usr/libexec/anon-ws-disable-stacked-tor/torbrowser.sh ]; then
-   . /usr/libexec/anon-ws-disable-stacked-tor/torbrowser.sh >/dev/null 2>/dev/null
+   . /usr/libexec/anon-ws-disable-stacked-tor/torbrowser.sh || true >/dev/null 2>/dev/null
 fi
