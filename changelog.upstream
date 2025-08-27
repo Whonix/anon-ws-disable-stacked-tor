@@ -1,3 +1,36 @@
+commit 8b2caed807e81fb32ef33ce71da55027596812a0
+Merge: c9cddd4 e760de7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 27 04:31:16 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit e760de77dfbb7f5f63ee4ef2085d4809a8c0898d
+Merge: 6e55d22 c9cddd4
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Aug 26 19:24:03 2025 -0500
+
+    Merge branch 'master' into arraybolt3/trixie
+
+commit c9cddd4d1ee90d1df0684b2fdb9d185c7958b4bb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 26 09:30:02 2025 +0000
+
+    bumped changelog version
+
+commit 6e55d22731a32e11d65b188ba18fb70f9be92463
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 22 17:23:24 2025 -0500
+
+    Use light_sleep instead of sleep
+
+commit 02c449964b216f44ff3e4f49d2935e2c7d400197
+Merge: a4ac7ba 51b7ccb
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 21 20:32:11 2025 -0500
+
+    Merge branch 'master' into arraybolt3/trixie
+
 commit 51b7ccb0e3851ea69ebcbe4bb805ee614508e94d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 20 06:57:33 2025 -0400
@@ -9,6 +42,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 20 06:25:39 2025 -0400
 
     readme
+
+commit a4ac7ba90bb950720fdd57d2358beab14ff885fa
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Aug 5 22:58:22 2025 -0500
+
+    Port to Trixie.
 
 commit 0f28701a92ec00cf300e504f49ced557220697ef
 Author: Patrick Schleizer <adrelanos@whonix.org>
