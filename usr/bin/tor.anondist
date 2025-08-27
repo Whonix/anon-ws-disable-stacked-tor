@@ -32,6 +32,8 @@
 # PORT=127.0.0.1:44343
 # UNIX_PORT=/run/tor/control
 
+source /usr/libexec/helper-scripts/light_sleep.bsh
+
 exit_handler() {
    if [ ! "$socat_pid_list" = "" ]; then
       for socat_pid_item in $socat_pid_list ; do
@@ -156,6 +158,5 @@ Mar 24 20:12:35.477 [notice] Opened Control listener connection (ready) on 127.0
 " | tee ~/.local/share/Bisq2/tor/debug.log >/dev/null
 fi
 
-sleep infinity &
-wait "$!"
+light_sleep infinity
 exit 0
