@@ -226,8 +226,4 @@ PrivateTmp=yes" > "./usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_
       systemctl restart "anon-ws-disable-stacked-tor_autogen_${file_name}.socket"
    fi
 
-   ## Append lintian override for each auto generated systemd unit file.
-   echo "\
-anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.service" >> ./usr/share/lintian/overrides/anon-ws-disable-stacked-tor
-
 done
