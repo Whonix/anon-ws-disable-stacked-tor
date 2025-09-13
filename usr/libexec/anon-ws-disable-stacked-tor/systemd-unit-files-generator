@@ -9,7 +9,7 @@
 #### workstation_only yes
 #### description
 ## Generates systemd unit files in
-## <code>/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*</code> which
+## <code>/usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*</code> which
 ## listen on common local ports used by popular Tor applications such as Tor
 ## Browser.
 ##
@@ -143,7 +143,7 @@ anon-ws-disable-stacked-tor: no-manual-page usr/sbin/tor.anondist
 ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832771#32" > usr/share/lintian/overrides/anon-ws-disable-stacked-tor
 
 ## Delete previously automatically generated systemd unit files by this script.
-rm -f lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
+rm -f usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
 
 for item in $file_port_tuples ; do
    file_item="${item%#*}"
@@ -187,7 +187,7 @@ SocketMode=666
 DirectoryMode=2755
 
 [Install]
-WantedBy=sockets.target" > "./lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.socket"
+WantedBy=sockets.target" > "./usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.socket"
 
    echo "\
 ## Copyright (C) 2018 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
@@ -212,8 +212,8 @@ Requires=anon-ws-disable-stacked-tor_autogen_${file_name}.socket
 #sudo /usr/libexec/anon-ws-disable-stacked-tor/systemd-unit-files-generator
 ## See Documentation:
 ## https://www.whonix.org/wiki/Redirect_Whonix-Workstation_Ports_or_Unix_Domain_Socket_Files_to_Whonix-Gateway
-ExecStart=/lib/systemd/systemd-socket-proxyd $destination_where
-PrivateTmp=yes" > "./lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.service"
+ExecStart=/usr/lib/systemd/systemd-socket-proxyd $destination_where
+PrivateTmp=yes" > "./usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.service"
 
    if [ "$system_run" = "true" ]; then
       systemctl --system daemon-reload
@@ -228,6 +228,6 @@ PrivateTmp=yes" > "./lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${fi
 
    ## Append lintian override for each auto generated systemd unit file.
    echo "\
-anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.service" >> ./usr/share/lintian/overrides/anon-ws-disable-stacked-tor
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_${file_name}.service" >> ./usr/share/lintian/overrides/anon-ws-disable-stacked-tor
 
 done
