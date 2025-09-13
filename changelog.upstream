@@ -1,3 +1,25 @@
+commit b9c6bcee604a261ecf350265851f2c4196211ef6
+Merge: da2f3a0 246dc01
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 13 06:43:05 2025 -0400
+
+    Merge remote-tracking branch 'github-whonix/master'
+
+commit 246dc01a6f1b1968caad56738156b776c5ba3da7
+Merge: da2f3a0 2e99c04
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 13 05:01:26 2025 -0400
+
+    Merge pull request #2 from DanWin/ipv6
+    
+    Add IPv6 listening sockets
+
+commit da2f3a052945814a1bf33f2b011c52fb6b037a07
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 2 15:35:30 2025 +0000
+
+    bumped changelog version
+
 commit 5db01765d8d2252a8ee3542add9b1bbce878806d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 27 19:39:48 2025 +0000
@@ -114,6 +136,36 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Dec 31 13:26:25 2024 -0500
 
     copyright
+
+commit 2e99c04dcaa8efc22734c621029bfbf5e42cc25b
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Sat Dec 14 20:12:37 2024 +0100
+
+    Get systemd-socket-proxyd working with IPv6 proxy
+
+commit f1fd10c87e0a6493b51bd02c6db0543c28e41f79
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Sun Dec 8 17:41:10 2024 +0100
+
+    Update comment
+
+commit b2e66642a44a097bae06a6239bf60bc49cc3d1f7
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Thu Oct 31 18:30:24 2024 +0100
+
+    Update auto generated files
+
+commit 9296f06cca64b4da553dfba255359ec79064f045
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Thu Oct 31 15:59:14 2024 +0100
+
+    Add separate GATEWAY_IP6 variable
+
+commit 22ded2933cb19b7134032523a3d16e26e580cfea
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Wed Oct 30 22:35:55 2024 +0100
+
+    Add IPv6 listening sockets
 
 commit fd8cbb2b34c318450761803b8d2024050470e0a3
 Author: Patrick Schleizer <adrelanos@whonix.org>
