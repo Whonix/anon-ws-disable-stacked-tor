@@ -9,4 +9,19 @@ anon-ws-disable-stacked-tor: no-manual-page usr/sbin/tor.anondist
 ## false positive lintian warning for static systemd unit file
 ## http://lists.alioth.debian.org/pipermail/pkg-systemd-maintainers/2017-March/014380.html
 ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832771#32
-anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key [usr/lib/systemd/system/anon-ws-disable-stacked-*.service]
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port_9050.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port_9150.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port_9051.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port_9151.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port_9102.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port6_9050.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port6_9150.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port6_9051.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port6_9151.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_port6_9102.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen__run_anon-ws-disable-stacked-tor_127.0.0.1_9050.sock.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen__run_anon-ws-disable-stacked-tor_127.0.0.1_9150.sock.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen__run_anon-ws-disable-stacked-tor_127.0.0.1_9051.sock.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen__run_anon-ws-disable-stacked-tor_127.0.0.1_9151.sock.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen__run_tor_socks.service
+anon-ws-disable-stacked-tor: systemd-service-file-missing-install-key usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen__run_tor_control.service
