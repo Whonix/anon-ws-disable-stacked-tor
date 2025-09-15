@@ -62,8 +62,8 @@ export TOR_USE_LEGACY_LAUNCHER=1
 ## to Whonix-Gateway port 9150.
 ## https://phabricator.whonix.org/T192
 ## https://trac.torproject.org/projects/tor/ticket/20111#comment:5
-## TODO: Networking and IPv6 might not be available when this runs, neets
-## testing.
+## TODO: IPv6 - Networking and IPv6 might not be available when this runs.
+## TODO: IPv6 - Needs testing.
 if [[ "$(ip -o addr show scope global | awk '{print $3}')" =~ inet6 ]]; then
   export TOR_SOCKS_IPC_PATH="/run/anon-ws-disable-stacked-tor/::1_9150.sock"
   export TOR_CONTROL_IPC_PATH="/run/anon-ws-disable-stacked-tor/::1_9151.sock"
