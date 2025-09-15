@@ -1,3 +1,70 @@
+commit 487387a32e1f21884a535f1d23905b0bdf39856e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:01:37 2025 -0400
+
+    printf
+
+commit 1d7a40f6f5132f996d87859ce9c2a0350f5bfae2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:00:53 2025 -0400
+
+    safe-rm
+
+commit dc047aeb5dbf792d44296576135f5f46e5b4b325
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:00:38 2025 -0400
+
+    end-of-options
+
+commit 265cc6ae5aa7786282ad99cf0fd11175a09628ea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 03:59:30 2025 -0400
+
+    cleanup
+
+commit c4792454ce505da9b414822d9ed888b8dd1d5d5e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 03:57:43 2025 -0400
+
+    revert Make Tor Browser use IPv6 if available
+
+commit e0a29219a0f5a87da09866393994dede9594fc84
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 03:54:48 2025 -0400
+
+    comments
+
+commit f3cb30788386f0228e367eb26ff40f458dca6856
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 03:53:38 2025 -0400
+
+    comment
+
+commit bf625c68d1c597fe9097b2e27809bbc3bf4aee55
+Merge: 4fcbec6 da0434e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 03:50:19 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit da0434e19372269addc569e8fa5059b260e224bd
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 14 11:07:12 2025 -0500
+
+    Make Tor Browser use IPv6 if available
+
+commit e75ee93fbc6318611f0c2f8d66552715297b2e07
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 14 10:12:20 2025 -0500
+
+    Create IPv6 IPC UNIX sockets
+
+commit 4fcbec6a0233ddc98a27167b1f0c2e46eb7927f8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 13 11:23:26 2025 +0000
+
+    bumped changelog version
+
 commit 432e45c0155c4283054c318b72fdcc10447c0ca2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Sep 13 07:23:16 2025 -0400
