@@ -34,13 +34,13 @@
 
 set -e
 
-MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+MYDIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" && pwd )"
 
 ## Change to either system or package source code root folder.
-cd "$MYDIR"
-cd ..
-cd ..
-cd ..
+cd -- "$MYDIR"
+cd -- ..
+cd -- ..
+cd -- ..
 
 #####################
 # built-in defaults #
@@ -138,7 +138,7 @@ fi
 #############
 
 ## Delete previously automatically generated systemd unit files by this script.
-rm -f usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
+rm -f -- usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
 
 for item in $file_port_tuples ; do
    type_item="${item%#*}"
