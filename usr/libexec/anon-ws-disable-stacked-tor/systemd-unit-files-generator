@@ -63,18 +63,26 @@ file_port_tuples+=" port6#9102:9102 " ## Thunderbird
 ## /run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock and forward those
 ## to $GATEWAY_IP:9150 etc. See also:
 ## https://phabricator.whonix.org/T192
-file_port_tuples+=" /run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock#9050 "
-file_port_tuples+=" /run/anon-ws-disable-stacked-tor/127.0.0.1_9150.sock#9150 "
-file_port_tuples+=" /run/anon-ws-disable-stacked-tor/127.0.0.1_9051.sock#9051 "
-file_port_tuples+=" /run/anon-ws-disable-stacked-tor/127.0.0.1_9151.sock#9051 "
+file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock:9050 "
+file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9150.sock:9150 "
+file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9051.sock:9051 "
+file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9151.sock:9051 "
 
+file_port_tuples+=" file6#/run/anon-ws-disable-stacked-tor/::1_9050.sock:9050 "
+file_port_tuples+=" file6#/run/anon-ws-disable-stacked-tor/::1_9150.sock:9150 "
+file_port_tuples+=" file6#/run/anon-ws-disable-stacked-tor/::1_9051.sock:9051 "
+file_port_tuples+=" file6#/run/anon-ws-disable-stacked-tor/::1_9151.sock:9051 "
+
+## TODO: How to make IPv6 equivalents of these? Do we even need IPv6
+## equivalents? If we do, do we need to keep IPv4 variants around?
+##
 ## system Tor default SocksSocket is /run/tor/socks
 ## redirect Whonix-Workstation unix domain socket file /run/tor/socks to Whonix-Gateway port 9050
-file_port_tuples+=" /run/tor/socks#9050 "
+file_port_tuples+=" file#/run/tor/socks:9050 "
 
 ## Debian /usr/share/tor/tor-service-defaults-torrc uses '/run/tor/control' Tor ControlSocket
 ## Redirect Whonix-Workstation unix domain socket file /run/tor/control to Whonix-Gateway port 9051
-file_port_tuples+=" /run/tor/control#9051 "
+file_port_tuples+=" file#/run/tor/control:9051 "
 
 ########################
 # parse config folders #
@@ -146,27 +154,35 @@ anon-ws-disable-stacked-tor: no-manual-page usr/sbin/tor.anondist
 rm -f usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
 
 for item in $file_port_tuples ; do
-   file_item="${item%#*}"
+   type_item="${item%#*}"
    port_tuples="${item##*#}"
 
    source_port="${port_tuples%:*}"
    destination_port="${port_tuples##*:}"
 
-   destination_where="${GATEWAY_IP}:${destination_port}"
-
-   if [ "$file_item" = "port" ]; then
+   if [ "$type_item" = "port" ]; then
       listen_where="127.0.0.1:$source_port"
+      destination_where="${GATEWAY_IP}:${destination_port}"
       file_name="port_${source_port}"
 
-   elif [ "$file_item" = "port6" ]; then
+   elif [ "$type_item" = "port6" ]; then
       listen_where="[::1]:$source_port"
-      file_name="port6_${source_port}"
       destination_where="${GATEWAY_IP6}:${destination_port}"
+      file_name="port6_${source_port}"
+
+   elif [ "$type_item" = "file" ]; then
+      listen_where="$source_port"
+      destination_where="${GATEWAY_IP}:${destination_port}"
+      file_name=${source_port//\//\_}
+
+   elif [ "$type_item" = "file6" ]; then
+      listen_where="$source_port"
+      destination_where="${GATEWAY_IP6}:${destination_port}"
+      file_name=${source_port//\//\_}
 
    else
-      listen_where="$file_item"
-      file_basename="${file_item##*/}"
-      file_name=${file_item//\//\_}
+      printf '%s\n' "ERROR: Unrecognized type '$type_item'!"
+      continue
    fi
 
    echo "\
