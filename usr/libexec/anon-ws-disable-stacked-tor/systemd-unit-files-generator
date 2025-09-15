@@ -138,7 +138,7 @@ fi
 #############
 
 ## Delete previously automatically generated systemd unit files by this script.
-rm -f -- usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
+safe-rm -f -- usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
 
 for item in $file_port_tuples ; do
    type_item="${item%#*}"
