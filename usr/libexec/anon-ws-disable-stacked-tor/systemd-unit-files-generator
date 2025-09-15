@@ -137,22 +137,6 @@ fi
 # generator #
 #############
 
-mkdir -p usr/share/lintian/overrides
-
-## Create lintian override file header.
-echo "\
-## Copyright (C) 2017 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
-## See the file COPYING for copying conditions.
-
-## $generated_comment
-
-## Dummy script does not need a man page. Original man page still available.
-anon-ws-disable-stacked-tor: no-manual-page usr/sbin/tor.anondist
-
-## false positive lintian warning for static systemd unit file
-## http://lists.alioth.debian.org/pipermail/pkg-systemd-maintainers/2017-March/014380.html
-## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832771#32" > usr/share/lintian/overrides/anon-ws-disable-stacked-tor
-
 ## Delete previously automatically generated systemd unit files by this script.
 rm -f usr/lib/systemd/system/anon-ws-disable-stacked-tor_autogen_*
 
