@@ -16,7 +16,7 @@ Package: anon-ws-disable-stacked-tor
 Provides: tor, obfsproxy, obfs4proxy, ${diverted-files}
 Conflicts: ${diverted-files}
 Architecture: all
-## dist-base-files provides user 'user'.
+## dist-base-files provides account 'user'.
 Depends: procps, socat, helper-scripts, dist-base-files, adduser,
  ${misc:Depends}
 Description: Prevents Tor over Tor in Anonymity Distribution Workstations
