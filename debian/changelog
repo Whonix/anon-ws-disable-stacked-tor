@@ -1,3 +1,9 @@
+anon-ws-disable-stacked-tor (3:10.3-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@whonix.org>  Sun, 28 Sep 2025 21:12:42 +0000
+
 anon-ws-disable-stacked-tor (3:10.2-1) unstable; urgency=medium
 
   * New upstream version (local package).

@@ -1,3 +1,22 @@
+commit 735eb0bc65996b9979b6ce6d82f2cf64860e8c49
+Merge: 45059ce 13cc9bc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 28 17:03:21 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 13cc9bc393f4cb1b9a73ba0b09ba90dfd34eb1b7
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 28 15:26:31 2025 -0500
+
+    Add abstractions/tor file from Tor to fix apparmor.service startup
+
+commit 45059ced7660d61b12a6907d8328d41e9ac40792
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 18:12:00 2025 +0000
+
+    bumped changelog version
+
 commit cde364d32a11f0e89724bd6fa1aa8c684dcdf41c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 14:01:33 2025 -0400
