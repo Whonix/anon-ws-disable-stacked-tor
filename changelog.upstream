@@ -1,3 +1,21 @@
+commit de90ec31bc61b099032ef54c161b111d2500be9b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 1 05:45:36 2025 -0400
+
+    Revert "Add abstractions/tor file from Tor to fix apparmor.service startup"
+    
+    This reverts commit 13cc9bc393f4cb1b9a73ba0b09ba90dfd34eb1b7.
+    
+    fixes:
+    
+    >  trying to overwrite '/etc/apparmor.d/abstractions/tor', which is also in package tor (0.4.8.16-1)
+
+commit 7bd5136c31d51bb1f797c617ca31328ee9d49d98
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 28 21:12:42 2025 +0000
+
+    bumped changelog version
+
 commit 735eb0bc65996b9979b6ce6d82f2cf64860e8c49
 Merge: 45059ce 13cc9bc
 Author: Patrick Schleizer <adrelanos@whonix.org>
