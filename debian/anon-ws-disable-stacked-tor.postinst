@@ -43,8 +43,9 @@ configure_function() {
 
    ## Ensure a Tor AppArmor include file always exists, so that AppArmor
    ## doesn't fail to load because Tor isn't installed.
+   mkdir --parents /etc/apparmor.d/abstractions || true
    if ! [ -f /etc/apparmor.d/abstractions/tor ]; then
-      touch /etc/apparmor.d/abstractions/tor
+      touch /etc/apparmor.d/abstractions/tor || true
    fi
 }
 
