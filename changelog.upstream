@@ -1,3 +1,22 @@
+commit 8866671de6d0ad9a872a4d4e5f146e3391eb2624
+Merge: 286ffbd ac7c3e5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 3 15:28:07 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit ac7c3e58123e970541d19ce0f1358210b0c5ce73
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Oct 3 13:39:52 2025 -0500
+
+    Remove obsolete abstractions/tor fix
+
+commit 286ffbd4d3cea5efc668aa967c79a05ca555b317
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 3 14:02:25 2025 +0000
+
+    bumped changelog version
+
 commit 358e36b2876fc5de1896a563ec4a8cd945f1166a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Oct 3 09:57:59 2025 -0400
