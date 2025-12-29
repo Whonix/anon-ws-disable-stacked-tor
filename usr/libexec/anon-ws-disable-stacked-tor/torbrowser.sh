@@ -15,8 +15,8 @@
 ## Deactivate tor-launcher,
 ## a Vidalia replacement as browser extension,
 ## to prevent running Tor over Tor.
-## https://trac.torproject.org/projects/tor/ticket/6009
-## https://gitweb.torproject.org/tor-launcher.git
+## https://gitlab.torproject.org/tpo/applications/tor-launcher/-/issues/6009
+## https://gitlab.torproject.org/tpo/applications/tor-launcher.git
 export TOR_SKIP_LAUNCH=1
 
 ## tor-launcher is deactivated above but the following is required to avoid
@@ -30,7 +30,7 @@ export TOR_USE_LEGACY_LAUNCHER=1
 ## The following TOR_SOCKS_HOST and TOR_SOCKS_PORT variables
 ## do not work flawlessly, due to an upstream bug in Tor Button:
 ##    "TOR_SOCKS_HOST, TOR_SOCKS_PORT regression"
-##    https://trac.torproject.org/projects/tor/ticket/8336
+##    https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/8336
 ## (As an alternative,
 ##    /home/user/tor-browser/Browser/TorBrowser/Data/Browser/profile.default/user.js
 ## could be used.)
