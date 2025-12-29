@@ -22,14 +22,13 @@ cp /usr/share/anon-ws-disable-stacked-tor/control.authcookie /run/tor/control.au
 chmod 640 /run/tor/control.authcookie
 
 ## tor-firejail uses '/run/tor/control_auth_cookie' auth cookie file
-## https://git.schwanenlied.me/yawning/tor-firejail/src/master/start-tor-browser
-## https://lists.torproject.org/pipermail/tor-dev/2016-July/011226.html
-## https://lists.torproject.org/pipermail/tor-dev/2016-July/011227.html
+## https://archive.torproject.org/websites/lists.torproject.org/pipermail/tor-dev/2016-July/011226.html
+## https://archive.torproject.org/websites/lists.torproject.org/pipermail/tor-dev/2016-July/011227.html
 cp /usr/share/anon-ws-disable-stacked-tor/control.authcookie /run/tor/control_auth_cookie
 chmod 640 /run/tor/control_auth_cookie
 
 ## Tor by default uses '/var/lib/tor/control_auth_cookie' auth cookie file
-## https://trac.torproject.org/projects/tor/ticket/19572
+## https://gitlab.torproject.org/tpo/core/tor/-/issues/19572
 cp /usr/share/anon-ws-disable-stacked-tor/control.authcookie /var/lib/tor/control_auth_cookie
 chmod 640 /var/lib/tor/control_auth_cookie
 
