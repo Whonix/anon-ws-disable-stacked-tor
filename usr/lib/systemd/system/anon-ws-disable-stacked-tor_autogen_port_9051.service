@@ -8,6 +8,8 @@
 Description=redirect 127.0.0.1:9051 to Whonix-Gateway port 9051
 Documentation=https://www.whonix.org/wiki/Dev/anon-ws-disable-stacked-tor
 ConditionPathExists=!/run/qubes/this-is-templatevm
+After=detect-ipv6-enabled-in-kernel.service
+
 ## IP HARDCODED. See next comment below.
 After=anon-ws-disable-stacked-tor_autogen_port_9051.socket
 Requires=anon-ws-disable-stacked-tor_autogen_port_9051.socket

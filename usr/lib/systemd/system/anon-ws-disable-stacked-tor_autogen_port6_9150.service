@@ -8,6 +8,8 @@
 Description=redirect [::1]:9150 to Whonix-Gateway port 9150
 Documentation=https://www.whonix.org/wiki/Dev/anon-ws-disable-stacked-tor
 ConditionPathExists=!/run/qubes/this-is-templatevm
+After=detect-ipv6-enabled-in-kernel.service
+ConditionPathExists=/run/helper-scripts/ipv6-is-enabled
 ## IP HARDCODED. See next comment below.
 After=anon-ws-disable-stacked-tor_autogen_port6_9150.socket
 Requires=anon-ws-disable-stacked-tor_autogen_port6_9150.socket
