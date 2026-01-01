@@ -1,3 +1,22 @@
+commit 8c5c2e0c9fbe66da44e250856554782cd892022a
+Merge: 3c63894 1545b93
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 1 12:05:18 2026 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 1545b93b0273bed70ae1a3dabb26733952574bc7
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Dec 31 17:52:43 2025 -0600
+
+    Make IPv6-related socket units only start if IPv6 is available
+
+commit 3c63894b86a0b6e2ba79ced6e2c2ccb7152d0efc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 08:45:53 2025 +0000
+
+    bumped changelog version
+
 commit 225306eb0b5ef582577a9641645c121a3366183a
 Merge: f46011f a73dbe7
 Author: Patrick Schleizer <adrelanos@whonix.org>
