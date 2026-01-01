@@ -147,6 +147,9 @@ for item in $file_port_tuples ; do
    source_port="${port_tuples%:*}"
    destination_port="${port_tuples##*:}"
 
+   add_ipv6_condition='false'
+   ipv6_condition_maybe=''
+
    if [ "$type_item" = "port" ]; then
       listen_where="127.0.0.1:$source_port"
       destination_where="${GATEWAY_IP}:${destination_port}"
@@ -156,6 +159,7 @@ for item in $file_port_tuples ; do
       listen_where="[::1]:$source_port"
       destination_where="${GATEWAY_IP6}:${destination_port}"
       file_name="port6_${source_port}"
+      add_ipv6_condition='true'
 
    elif [ "$type_item" = "file" ]; then
       listen_where="$source_port"
@@ -166,10 +170,15 @@ for item in $file_port_tuples ; do
       listen_where="$source_port"
       destination_where="${GATEWAY_IP6}:${destination_port}"
       file_name=${source_port//\//\_}
+      add_ipv6_condition='true'
 
    else
       printf '%s\n' "ERROR: Unrecognized type '$type_item'!"
       continue
+   fi
+
+   if [ "${add_ipv6_condition}" = 'true' ]; then
+     ipv6_condition_maybe='ConditionPathExists=/run/helper-scripts/ipv6-is-enabled'
    fi
 
    printf '%s\n' "\
@@ -182,6 +191,8 @@ for item in $file_port_tuples ; do
 Description=redirect $listen_where to Whonix-Gateway port ${destination_port}
 Documentation=https://www.whonix.org/wiki/Dev/anon-ws-disable-stacked-tor
 ConditionPathExists=!/run/qubes/this-is-templatevm
+After=detect-ipv6-enabled-in-kernel.service
+${ipv6_condition_maybe}
 
 [Socket]
 ListenStream=$listen_where
@@ -203,6 +214,8 @@ WantedBy=sockets.target" > "./usr/lib/systemd/system/anon-ws-disable-stacked-tor
 Description=redirect $listen_where to Whonix-Gateway port ${destination_port}
 Documentation=https://www.whonix.org/wiki/Dev/anon-ws-disable-stacked-tor
 ConditionPathExists=!/run/qubes/this-is-templatevm
+After=detect-ipv6-enabled-in-kernel.service
+${ipv6_condition_maybe}
 ## IP HARDCODED. See next comment below.
 After=anon-ws-disable-stacked-tor_autogen_${file_name}.socket
 Requires=anon-ws-disable-stacked-tor_autogen_${file_name}.socket

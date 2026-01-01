@@ -7,6 +7,8 @@
 Description=redirect 127.0.0.1:9102 to Whonix-Gateway port 9102
 Documentation=https://www.whonix.org/wiki/Dev/anon-ws-disable-stacked-tor
 ConditionPathExists=!/run/qubes/this-is-templatevm
+After=detect-ipv6-enabled-in-kernel.service
+
 
 [Socket]
 ListenStream=127.0.0.1:9102
