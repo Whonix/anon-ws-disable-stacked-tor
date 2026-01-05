@@ -19,7 +19,7 @@
 ## Create a unix domain socket files such as
 ## /run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock and forward those
 ## to $GATEWAY_IP:9150 etc. See also:
-## https://phabricator.whonix.org/T192
+## https://forums.whonix.org/t/tbbs-use-of-sockssocket-will-break-whonixs-tor-browser-implementation/19207
 ##
 ## system Tor default SocksSocket is /run/tor/socks
 ## redirect Whonix-Workstation unix domain socket file /run/tor/socks to Whonix-Gateway port 9050
@@ -62,7 +62,7 @@ file_port_tuples+=" port6#9102:9102 " ## Thunderbird
 ## Create a unix domain socket files such as
 ## /run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock and forward those
 ## to $GATEWAY_IP:9150 etc. See also:
-## https://phabricator.whonix.org/T192
+## https://forums.whonix.org/t/tbbs-use-of-sockssocket-will-break-whonixs-tor-browser-implementation/19207
 file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9050.sock:9050 "
 file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9150.sock:9150 "
 file_port_tuples+=" file#/run/anon-ws-disable-stacked-tor/127.0.0.1_9051.sock:9051 "
