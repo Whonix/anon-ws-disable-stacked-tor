@@ -1,3 +1,79 @@
+commit 975b0477d351af2369d4ffcc4037d9132da39649
+Merge: f089cb1 e074d29
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:43:48 2026 -0500
+
+    Merge remote-tracking branch 'github-whonix/master'
+
+commit e074d29488674ab0c1d7a18e1b36ac0e3844d629
+Merge: 124bfe6 de6036d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:28:22 2026 -0500
+
+    Merge pull request #10 from Nurmagoz/patch-8
+    
+    Update systemd-unit-files-generator Links
+
+commit 124bfe67743fc26bb2ad8bfb870407d25b3d5f80
+Merge: a1fd7a2 7a5f7cb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:27:55 2026 -0500
+
+    Merge pull request #9 from Nurmagoz/patch-7
+    
+    Update tor.anondist Link
+
+commit a1fd7a2b7a7b661e9899228642db4135fa3efb6c
+Merge: eecd630 a85e908
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:27:32 2026 -0500
+
+    Merge pull request #8 from Nurmagoz/patch-6
+    
+    Update 30_anon-dist.conf link
+
+commit eecd6304044445e613306098b512b994f9d354bb
+Merge: 0c66237 92fcc7e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:26:59 2026 -0500
+
+    Merge pull request #7 from Nurmagoz/patch-5
+    
+    Update anon-ws-disable-stacked-tor.conf link
+
+commit 0c66237bcb53b25971948c05f1a6a98ab8cb9a59
+Merge: f03464d c2c6188
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:26:12 2026 -0500
+
+    Merge pull request #5 from Nurmagoz/patch-3
+    
+    Update debian/control link fixing
+
+commit f03464def9bb54a1c14b1ee84e2e416bb915494b
+Merge: 634208a e1c11da
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:19:19 2026 -0500
+
+    Merge pull request #4 from Nurmagoz/patch-2
+    
+    Update URLs anon-ws-disable-stacked-tor/state-files
+
+commit 634208a523fcfbfc5e313580929ea93c4cafe269
+Merge: f089cb1 1025f26
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:18:45 2026 -0500
+
+    Merge pull request #3 from Nurmagoz/patch-1
+    
+    Updated URLs /torbrowser.sh
+
+commit f089cb1405fffbb26d426d86fc7e5cfbb1aba7fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 1 17:29:42 2026 +0000
+
+    bumped changelog version
+
 commit 8c5c2e0c9fbe66da44e250856554782cd892022a
 Merge: 3c63894 1545b93
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -10,6 +86,48 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Wed Dec 31 17:52:43 2025 -0600
 
     Make IPv6-related socket units only start if IPv6 is available
+
+commit de6036d4556abc270d72f75a71615d3540349562
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 20:18:36 2025 +0000
+
+    Update systemd-unit-files-generator Links
+
+commit 7a5f7cbff979d3f1544051f8be918bc25f1855cc
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 20:11:39 2025 +0000
+
+    Update tor.anondist Links
+
+commit a85e90836f278e7dc38a7559964bfc2601be259e
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 20:05:45 2025 +0000
+
+    Update 30_anon-dist.conf link
+
+commit 92fcc7e5b4a846dec3e3a72ae3d2495946f07830
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 19:55:29 2025 +0000
+
+    Update anon-ws-disable-stacked-tor.conf link
+
+commit c2c6188c2b07296d7a0f7e23013022e517555c48
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 19:49:10 2025 +0000
+
+    Update control links fixing
+
+commit e1c11da7182408da2a3c371febdfa6f6c72c8f04
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Mon Dec 29 16:43:16 2025 +0000
+
+    Update URLs
+
+commit 1025f2614cdfdddd0e134c5b8d96697ebe9cce06
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Mon Dec 29 16:34:11 2025 +0000
+
+    Updated URLs
 
 commit 3c63894b86a0b6e2ba79ced6e2c2ccb7152d0efc
 Author: Patrick Schleizer <adrelanos@whonix.org>
