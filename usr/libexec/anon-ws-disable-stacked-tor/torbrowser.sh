@@ -60,8 +60,8 @@ export TOR_USE_LEGACY_LAUNCHER=1
 ## systemd-socket-proxyd is being used for creation of unix domain socket file
 ## /run/anon-ws-disable-stacked-tor/127.0.0.1_9150.sock and forwarding it to
 ## to Whonix-Gateway port 9150.
-## https://phabricator.whonix.org/T192
-## https://trac.torproject.org/projects/tor/ticket/20111#comment:5
+## https://forums.whonix.org/t/tbbs-use-of-sockssocket-will-break-whonixs-tor-browser-implementation/19207
+## https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20111#note_2633535
 ## TODO: IPv6 - Networking and IPv6 might not be available when this runs.
 ## TODO: IPv6 - Needs testing.
 # if [[ "$(ip -o addr show scope global | awk '{print $3}')" =~ inet6 ]]; then
@@ -77,14 +77,14 @@ export TOR_SOCKS_IPC_PATH="/run/anon-ws-disable-stacked-tor/127.0.0.1_9150.sock"
 export TOR_CONTROL_IPC_PATH="/run/anon-ws-disable-stacked-tor/127.0.0.1_9151.sock"
 
 ## environment variable to skip TorButton control port verification
-## https://trac.torproject.org/projects/tor/ticket/13079
+## https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/13079
 export TOR_SKIP_CONTROLPORTTEST=1
 
 ## Environment variable to disable the "TorButton" ->
 ## "Open Network Settings..." menu item. It is not useful and confusing to have
 ## on a workstation, because Tor must be configured on the Whonix-Gateway, which is
 ## for security reasons forbidden from the Whonix-Gateway.
-## https://trac.torproject.org/projects/tor/ticket/14100
+## https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/14100
 ## https://www.whonix.org/wiki/Tor_Browser/Advanced_Users#Open_Network_Settings
 export TOR_NO_DISPLAY_NETWORK_SETTINGS=1
 
