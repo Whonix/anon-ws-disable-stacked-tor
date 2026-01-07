@@ -1,3 +1,31 @@
+commit 0abf3b941a67c40075c8e1a5a8437e2f8e7c4326
+Merge: d2c0e3e fc58011
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 6 10:27:46 2026 -0500
+
+    Merge remote-tracking branch 'github-whonix/master'
+
+commit fc580117585faf00d0ee51f7cce612e4eea618fd
+Merge: d2c0e3e 7d4a75d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 6 09:17:09 2026 -0500
+
+    Merge pull request #11 from Nurmagoz/patch-9
+    
+    Update torbrowser.sh Links
+
+commit 7d4a75ded6f26549dabf54f3a45da5f2d489134b
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Mon Jan 5 14:59:08 2026 +0000
+
+    Update torbrowser.sh Links
+
+commit d2c0e3e5b2a8653ac4d10884e395024f83555ed9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 10:33:08 2026 +0000
+
+    bumped changelog version
+
 commit 975b0477d351af2369d4ffcc4037d9132da39649
 Merge: f089cb1 e074d29
 Author: Patrick Schleizer <adrelanos@whonix.org>
