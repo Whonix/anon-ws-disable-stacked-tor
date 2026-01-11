@@ -30,7 +30,7 @@ See also:
 * https://tor.stackexchange.com/questions/427/is-running-tor-over-tor-dangerous
 
 [1] See "7.5 Virtual packages - Provides" on
-http://www.debian.org/doc/debian-policy/ch-relationships.html
+https://www.debian.org/doc/debian-policy/ch-relationships.html
 
 This package is produced independently of, and carries no guarantee from,
 The Tor Project.
