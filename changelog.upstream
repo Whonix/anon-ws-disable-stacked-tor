@@ -1,3 +1,9 @@
+commit 36da1df74a148582b785f02acf35927841a063d4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Mar 28 09:57:24 2026 +0000
+
+    bumped changelog version
+
 commit 254df852f788ab7a400c65bcb3f633f93b646ef6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Mar 28 05:31:25 2026 -0400
@@ -41,7 +47,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 6 09:17:09 2026 -0500
 
     Merge pull request #11 from Nurmagoz/patch-9
-    
+
     Update torbrowser.sh Links
 
 commit 7d4a75ded6f26549dabf54f3a45da5f2d489134b
@@ -69,7 +75,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:28:22 2026 -0500
 
     Merge pull request #10 from Nurmagoz/patch-8
-    
+
     Update systemd-unit-files-generator Links
 
 commit 124bfe67743fc26bb2ad8bfb870407d25b3d5f80
@@ -78,7 +84,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:27:55 2026 -0500
 
     Merge pull request #9 from Nurmagoz/patch-7
-    
+
     Update tor.anondist Link
 
 commit a1fd7a2b7a7b661e9899228642db4135fa3efb6c
@@ -87,7 +93,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:27:32 2026 -0500
 
     Merge pull request #8 from Nurmagoz/patch-6
-    
+
     Update 30_anon-dist.conf link
 
 commit eecd6304044445e613306098b512b994f9d354bb
@@ -96,7 +102,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:26:59 2026 -0500
 
     Merge pull request #7 from Nurmagoz/patch-5
-    
+
     Update anon-ws-disable-stacked-tor.conf link
 
 commit 0c66237bcb53b25971948c05f1a6a98ab8cb9a59
@@ -105,7 +111,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:26:12 2026 -0500
 
     Merge pull request #5 from Nurmagoz/patch-3
-    
+
     Update debian/control link fixing
 
 commit f03464def9bb54a1c14b1ee84e2e416bb915494b
@@ -114,7 +120,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:19:19 2026 -0500
 
     Merge pull request #4 from Nurmagoz/patch-2
-    
+
     Update URLs anon-ws-disable-stacked-tor/state-files
 
 commit 634208a523fcfbfc5e313580929ea93c4cafe269
@@ -123,7 +129,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:18:45 2026 -0500
 
     Merge pull request #3 from Nurmagoz/patch-1
-    
+
     Updated URLs /torbrowser.sh
 
 commit f089cb1405fffbb26d426d86fc7e5cfbb1aba7fd
@@ -261,11 +267,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 1 05:45:36 2025 -0400
 
     Revert "Add abstractions/tor file from Tor to fix apparmor.service startup"
-    
+
     This reverts commit 13cc9bc393f4cb1b9a73ba0b09ba90dfd34eb1b7.
-    
+
     fixes:
-    
+
     >  trying to overwrite '/etc/apparmor.d/abstractions/tor', which is also in package tor (0.4.8.16-1)
 
 commit 7bd5136c31d51bb1f797c617ca31328ee9d49d98
@@ -433,7 +439,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Sep 13 05:01:26 2025 -0400
 
     Merge pull request #2 from DanWin/ipv6
-    
+
     Add IPv6 listening sockets
 
 commit da2f3a052945814a1bf33f2b011c52fb6b037a07
@@ -660,7 +666,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Mar 24 11:53:10 2024 -0400
 
     dummy tor: redirect `tor --version` to original Tor
-    
+
     for Bisq 2 support
 
 commit f8ea5309e4a9f7286e155d0c3da82a1f68d326db
@@ -710,7 +716,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Nov 11 13:41:25 2023 -0500
 
     change license to AGPL-3+
-    
+
     https://forums.whonix.org/t/license-change-to-agplv3/17455
 
 commit 70ab3e3f71254df9fabcd3fdc42b9a0510406e5e
@@ -892,7 +898,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 16 12:10:48 2022 -0500
 
     Tor emulation: fix, pass all command line options to `tor` when being called with `--verify-config`
-    
+
     https://github.com/nyxnor/tor-ctrl/issues/9
 
 commit 8b34a274e458feb17d2cf8002e2853703e174860
@@ -906,9 +912,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 15 15:28:41 2022 -0500
 
     implement `tor --verify-config`
-    
+
     tor-ctrl uses 'tor --verify-config'
-    
+
     fixes https://github.com/nyxnor/tor-ctrl/issues/9
 
 commit 673ff1807649d753f937298f2a3ad83556ce85e8
@@ -1007,9 +1013,9 @@ Date:   Wed Jul 7 04:33:00 2021 -0400
 
     fix "Firefox is offline" messages in Tor Browser 10.5a17 and above by
     enabling Tor Browser `quickstart`
-    
+
     `export TOR_USE_LEGACY_LAUNCHER=1`
-    
+
     https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/27476
     https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/40455
     https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/40433
@@ -1050,9 +1056,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Feb 12 03:36:57 2021 -0500
 
     disable the following port forwardings from Whonix-Workstation to Whonix-Gateway
-    
+
     - 9153 (Tor Messenger default ControlPort)
-    
+
     since deprecated applications in Whonix and no longer in use
 
 commit e6b7b164790058453b495b8b17a9bbeb310363c1
@@ -1060,10 +1066,10 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Feb 12 03:35:13 2021 -0500
 
     disable the following port forwardings from Whonix-Workstation to Whonix-Gateway
-    
+
     - 9152 (Tor Messenger default SocksPort)
     - 11109 (TorChat default SocksPort)
-    
+
     since deprecated applications in Whonix and no longer in use
 
 commit 464189c826736e65fdf3f378ffbaf06cd33f0018
@@ -1113,11 +1119,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 19 11:36:00 2020 -0400
 
     forward Thunderbird port 9102
-    
+
     run usr/share/lintian/overrides/anon-ws-disable-stacked-tor
-    
+
     Thanks to @LavenderLevitator for the bug report!
-    
+
     https://forums.whonix.org/t/torbirdy-replacement/8782/35
 
 commit c7ad15982c27866747f9bcef0c10c83cacf18b7f
@@ -1131,7 +1137,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 29 12:21:28 2020 -0400
 
     redirect Thunderbird localhost 9102 to Whonix-Gateway 9102
-    
+
     https://forums.whonix.org/t/torbirdy-deprecated-replacement-required/8782/27
 
 commit 84a73d18afa706ee39ac51b911c7821c79fad758
@@ -1313,7 +1319,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 10:03:21 2019 +0000
 
     actually do not cleanup DataDirectory; comment
-    
+
     https://github.com/micahflee/onionshare/issues/829#issuecomment-507190839
 
 commit 89f3a4ec5996903812750b1442bca9ea44c7020d
@@ -1327,7 +1333,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 10:00:29 2019 +0000
 
     private variables
-    
+
     https://github.com/micahflee/onionshare/issues/829#issuecomment-507190839
 
 commit 7b10c4923e566283c8e10d92e27e036509019d88
@@ -1335,7 +1341,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 09:59:08 2019 +0000
 
     cleanup DataDirectory
-    
+
     https://github.com/micahflee/onionshare/issues/829#issuecomment-507190839
 
 commit c3f38be312088470794b7ffdc7c3a25c6594f3f3
@@ -1343,7 +1349,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 09:52:16 2019 +0000
 
     add also SocksPort support for OnionShare "bundled Tor"
-    
+
     https://github.com/micahflee/onionshare/issues/829#issuecomment-507190839
 
 commit 6cbc889b37648b8b8cae8193c675b3c5aef9e55f
@@ -1370,7 +1376,7 @@ Date:   Thu Jun 6 01:43:06 2019 -0400
 
     'restart' rather than 'start' required to support running this script
     during runtime due to the following.
-    
+
     Jun 06 05:38:49 host systemd[1]: anon-ws-disable-stacked-tor_autogen__var_run_tor_socks.socket: Socket unit configuration has changed while unit has been running, no open socket file descriptor left. The socket unit is not functional until restarted.
 
 commit 4bc1c2c8165a1a160116f15bf841b88f3b2587fa
@@ -1426,7 +1432,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Apr 30 21:07:18 2019 -0400
 
     re-run usr/lib/anon-ws-disable-stacked-tor/systemd-unit-files-generator
-    
+
     fix port / fix for bisq
 
 commit a7166ba7103d445fb032aa40b55a2b1ff32a010a
@@ -1452,7 +1458,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Apr 6 15:17:09 2019 +0000
 
     have sane built-in defaults even if config files are non-existing
-    
+
     https://phabricator.whonix.org/T503
 
 commit c73e0e05dd15ded988bf895f6d62b241a74dbd4f
@@ -1514,18 +1520,18 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Mar 1 14:31:49 2019 +0000
 
     add improved legal protections clauses
-    
+
     The license for software created by Whonix is the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version with additional terms applicable per GNU GPL version 3 section 7.
-    
+
     The additional terms are based on the Doom 3 license which is Debian refers to as `GPL-3+-with-id-software-additional-terms`, which is Debian DFSG [1] (The Debian Free Software Guidelines) approved and which is therefore suitable for Debian `main`. Whonix made applied minimal changes to it:
-    
+
     * Rewrite `The Doom 3 BFG Edition GPL Source Code` to the more common `this program` which is used throughout the GPL.
     * Added a "trump clause" [2], in other words, any conflicts or disputes between the additional terms and the GPLv3 shall be resolved in favor of the GPLv3 by adding `Notwithstanding any other provision of this License` (as mentioned in GPL FAQ [3]) at the beginning of the additional terms.
-    
+
     [1] https://www.debian.org/social_contract#guidelines
     [2] https://www.fsf.org/news/canonical-updated-licensing-terms
     [3] https://www.gnu.org/licenses/gpl-faq.html#v3Notwithstanding
-    
+
     For more considerations, see also:
     https://www.whonix.org/wiki/Dev/Licensing
 
@@ -1696,9 +1702,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 23:09:56 2018 +0000
 
     reintroduce etc/anon-ws-disable-stacked-tor.d/30_anon-dist.conf
-    
+
     otherwise we would have to delete it
-    
+
     this mechanism may be easier to use than creating more systemd unit files
 
 commit d9654219d146db56155989cc9178c185ffa3da29
@@ -1724,11 +1730,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 19:00:31 2018 +0000
 
     anon-ws-disable-stacked-tor to systemd socket activation
-    
+
     initially generate systemd service and socket files
-    
+
     by using usr/share/anon-ws-disable-stacked-tor/systemd-unit-files-generator
-    
+
     https://phabricator.whonix.org/T623
 
 commit 1e28ee0263bb7499c3251b8ec926c14091e492fa
@@ -1736,7 +1742,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 18:58:10 2018 +0000
 
     port anon-ws-disable-stacked-tor to systemd socket activation work in progress
-    
+
     https://phabricator.whonix.org/T623
 
 commit 49ea58c2ca9e6e5667771c7a4b8a0d8789e58d1f
@@ -1744,7 +1750,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 18:48:43 2018 +0000
 
     port anon-ws-disable-stacked-tor to systemd socket activation work in progress
-    
+
     https://phabricator.whonix.org/T623
 
 commit 453cd22e26dc1ddedeeeb1bda23a76952f2bb651
@@ -1752,7 +1758,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 18:40:09 2018 +0000
 
     port anon-ws-disable-stacked-tor to systemd socket activation work in progress
-    
+
     https://phabricator.whonix.org/T623
 
 commit 9159e2fc94b575889a71ab4fcf7a69a2d4dcdeb5
@@ -1760,7 +1766,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 18:11:01 2018 +0000
 
     port anon-ws-disable-stacked-tor to systemd socket activation work in progress
-    
+
     https://phabricator.whonix.org/T623
 
 commit 39dda65e8cdfd813e7aa43fb9fa30c43d7d4714f
@@ -1768,7 +1774,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 18:06:14 2018 +0000
 
     port anon-ws-disable-stacked-tor to systemd socket activation work in progress
-    
+
     https://phabricator.whonix.org/T623
 
 commit 0d53472ca947dc59531418a8948e7470939214ab
@@ -1776,7 +1782,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 17:58:23 2018 +0000
 
     port anon-ws-disable-stacked-tor to systemd socket activation work in progress
-    
+
     https://phabricator.whonix.org/T623
 
 commit 3c402798214756099c9f3cc61f87f5df1c314b63
@@ -1790,7 +1796,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 16:57:01 2018 +0000
 
     break TorChat for simplicity
-    
+
     perhaps reimplement later
 
 commit d859abe8fb04d420a218ff916a5107fcf92305d3
@@ -1816,7 +1822,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 10 16:26:28 2018 +0000
 
     break TorChat for simplicity
-    
+
     perhaps reimplement later
 
 commit 4495ab8ebf53925adc14cce9b3dfee52b79b2488
@@ -1915,9 +1921,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 23 23:53:31 2017 +0000
 
     improve Tor emulation
-    
+
     keep dummy Tor instance running
-    
+
     this allows using tor-prompt (from python-stem package) inside Whonix-Workstation
 
 commit 2a3e968206ecd6ef6341d92cffbb1a195d8960a7
@@ -1967,7 +1973,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 10 15:47:49 2017 +0000
 
     remove faketime from Build-Depends:
-    
+
     since no longer used for reproducible builds
 
 commit e0fb9e058081c75923f1d6eba45dc13edc07b086
@@ -2053,7 +2059,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Dec 7 19:51:03 2016 +0100
 
     port 9052 -> 9051
-    
+
     https://phabricator.whonix.org/T573
 
 commit 078dde61325251c4fd045bf0f2024a3e240b0879
@@ -2067,7 +2073,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 28 00:40:32 2016 +0100
 
     socat TCP4 and TCP6 forward to Whonix-Gateway (not just TCP4)
-    
+
     https://phabricator.whonix.org/T192
 
 commit 24421e2dadbcec6911ecb41bc8f7fce5b23a018f
@@ -2075,7 +2081,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 28 00:35:09 2016 +0100
 
     socat listen on localhost only
-    
+
     https://forums.whonix.org/t/tor-browser-6-5a4-connectivity-broken-blocked-by-apparmor-profile-since-tbb-changed-to-sockssocket/3154/16?u=patrick
 
 commit b6a065430c111a16ccddeda8e67c24ab5f977a54
@@ -2089,7 +2095,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Nov 22 02:30:31 2016 +0000
 
     fix controlportfilt.sh
-    
+
     https://github.com/QubesOS/qubes-issues/issues/2447
 
 commit 59ce8d081c9710ee5c707eddc2c0c3e8bacfefce
@@ -2127,7 +2133,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 17 18:31:44 2016 +0000
 
     updated Tor IPC environment variable file names as per TBB 6.5a4
-    
+
     https://phabricator.whonix.org/T192
 
 commit ce8b7ebb31771ca3c634b7f98e53e99481e29079
@@ -2147,7 +2153,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Sep 14 19:44:31 2016 +0000
 
     add support for python-stem Tor Control Socket based authentication
-    
+
     by adding a functional /var/run/tor/control.authcookie
 
 commit 223ad3f5a2cf834fcd9ecd10a9954f02b20645c1
@@ -2197,9 +2203,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Sep 13 20:31:10 2016 +0000
 
     set environment variables TOR_SOCKS_SOCKET and TOR_CONTROL_SOCKET
-    
+
     so Tor Browser connectivity does not break when TPO switches to SocksSocket
-    
+
     https://phabricator.whonix.org/T192
 
 commit cd50cafde32b28258a4b2137c545c56905fe8fc5
@@ -2237,9 +2243,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 23 15:43:29 2016 +0000
 
     forward Tor auth cookie unix domain socket files to Whonix-Gateway Control Port Filter
-    
+
     cleanup eventual old files
-    
+
     comments
 
 commit 63a0d3ccd15646cf11d7c37a2a7fbde7e4b0bb61
@@ -2247,7 +2253,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jun 16 13:23:21 2016 +0000
 
     remove rinetd maintainer script restart code since ported to socat
-    
+
     https://phabricator.whonix.org/T330
 
 commit 28e0d4ce831732bf042e7ba73cf650e3462ae81b
@@ -2279,7 +2285,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jun 8 22:33:39 2016 +0000
 
     removed rinetd leftovers
-    
+
     https://phabricator.whonix.org/T464
 
 commit 2ead73c2d15ba39836ec14f122a14f5047bb768a
@@ -2287,7 +2293,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jun 8 22:21:57 2016 +0000
 
     replaced rinetd with socat and added configurable socks port redirection
-    
+
     https://phabricator.whonix.org/T464
 
 commit 480c18d32f9ec39485c80218401398c1abd510d7
@@ -2319,7 +2325,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 15 01:41:21 2015 +0000
 
     fix broken anon-ws-disable-stackedtor 'sudo service tor status' in Qubes
-    
+
     https://phabricator.whonix.org/T454
 
 commit 4c50bd5eaf25ee790674e1db97087a582a4e9e0a
