@@ -59,6 +59,11 @@ set -o errtrace
 shopt -s inherit_errexit
 shopt -s shift_verbose
 
+## Read by the EXIT trap, which is armed unconditionally, but only appended to
+## when a socat is actually started. A torrc with neither ControlPort nor
+## SocksPort therefore reached the trap with it unset, and the trap aborted.
+socat_pid_list=""
+
 ## style-ok: allow-exec -- transparent wrapper: tor must BECOME this process
 ## so its exit code, signals and stdio are the real ones the caller sees.
 
@@ -97,6 +102,15 @@ do
       ## unset previously fell through to the catch-all arm.
       case "${1:-}" in
          -f)
+            ## '-f' REQUIRES a value. Reading a bare '$2' aborted with an
+            ## unbound-variable error under nounset; simply defaulting it to
+            ## empty was worse, because the wrapper then carried on and
+            ## eventually launched tor with no config, hanging instead of
+            ## failing. Say what is wrong and stop.
+            if [ "$#" -lt 2 ]; then
+               printf '%s\n' "$0: ERROR: '-f' requires a torrc file argument." >&2
+               exit 1
+            fi
             file_name="$2"
             shift 2
             ;;
@@ -131,13 +145,16 @@ done
 ## OnionShare support for configuration option "bundled Tor".
 ## Bisq 2 support.
 if [ ! "${file_name}" = "" ]; then
-   DataDirectory="$(cat -- "${file_name}" | grep -- DataDirectory | awk '{print $2}')"
-   ControlSocket="$(cat -- "${file_name}" | grep -- ControlSocket | awk '{print $2}')"
-   CookieAuthFile="$(cat -- "${file_name}" | grep -- CookieAuthFile | awk '{print $2}')"
-   SocksPort="$(cat -- "${file_name}" | grep -- SocksPort | awk '{print $2}')"
+   ## '|| true' on each: a torrc need not declare every directive, and with
+   ## pipefail a grep that matches nothing fails the whole pipeline and aborts
+   ## the wrapper. A torrc without a ControlSocket is perfectly valid.
+   DataDirectory="$(cat -- "${file_name}" | grep -- DataDirectory | awk '{print $2}' || true)"
+   ControlSocket="$(cat -- "${file_name}" | grep -- ControlSocket | awk '{print $2}' || true)"
+   CookieAuthFile="$(cat -- "${file_name}" | grep -- CookieAuthFile | awk '{print $2}' || true)"
+   SocksPort="$(cat -- "${file_name}" | grep -- SocksPort | awk '{print $2}' || true)"
    ## Bisq example Tor config:
    ## ControlPort 127.0.0.1:43649
-   ControlPort="$(cat -- "${file_name}" | grep -- ControlPort | awk '{print $2}')"
+   ControlPort="$(cat -- "${file_name}" | grep -- ControlPort | awk '{print $2}' || true)"
 
    ## Example SocksPort:
    ## SocksPort=24883

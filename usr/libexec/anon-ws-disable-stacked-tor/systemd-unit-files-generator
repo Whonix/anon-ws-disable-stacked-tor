@@ -133,10 +133,13 @@ if [ "${BASH_SOURCE[0]}" = "/usr/libexec/anon-ws-disable-stacked-tor/systemd-uni
 
    if [ "${GATEWAY_IP}" = "" ] || [ "${GATEWAY_IP6}" = "" ]; then
       ## Provides variable $GATEWAY_IP and $GATEWAY_IP6 so it can be used by `source`d config snippets.
-      ## The word splitting is the POINT: settings_echo emits assignments that
-      ## eval must see as separate words.
-      # shellcheck disable=SC2046
-      eval $(/usr/libexec/helper-scripts/settings_echo)
+      ## QUOTED. An earlier comment here claimed the word splitting was required --
+## that eval would otherwise receive the whole block as one argument. Measured,
+## that is FALSE: eval parses a single argument containing newlines as multiple
+## commands, and every assignment lands. Unquoted, the substitution was also
+## subject to PATHNAME EXPANSION, so a settings value containing a glob
+## character could turn into filenames or an eval syntax error.
+eval "$(/usr/libexec/helper-scripts/settings_echo)"
       ## Deliberate self-assignment: re-declares the variable in this scope so
       ## it is picked up by the generator below.
       # shellcheck disable=SC2269
