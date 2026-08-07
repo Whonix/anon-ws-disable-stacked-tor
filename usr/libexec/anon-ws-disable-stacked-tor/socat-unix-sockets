@@ -44,9 +44,21 @@ bash_n_output:
 ${bash_n_output}" >&2
       exit 1
    fi
+   ## nounset OFF around the source itself, and only around it -- the loop's own
+   ## code stays strict.
+   ##
+   ## These are USER drop-ins, and the template this package SHIPS
+   ## (etc/anon-ws-disable-stacked-tor.d/30_anon-dist.conf) documents the idiom
+   ##   [ -n "$pre_command" ] || pre_command=""
+   ## which reads the variable before the line that creates it. Anyone following
+   ## our own documented example would abort the service under nounset. We
+   ## cannot enumerate what a drop-in will touch, so the snippet is not held to
+   ## strict mode; 'bash -n' above still rejects one that is syntactically bad.
+   set +o nounset
    ## Dynamic path from the glob above; R-081 prescribes SC1090 here.
    # shellcheck disable=SC1090
    source "${i}"
+   set -o nounset
 done
 
 ## '|| true' in case no child process is run.
