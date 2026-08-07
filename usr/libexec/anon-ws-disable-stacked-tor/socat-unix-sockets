@@ -56,4 +56,10 @@ fi
 
 ## Relying on systemd KillMode=control-group to kill the child processes as
 ## well as this script.
-wait "${pid_list}"
+## DELIBERATELY UNQUOTED: pgrep emits a NEWLINE-separated list of PIDs and
+## 'wait' wants them as separate arguments. Quoted -- as a blanket shellcheck
+## sweep does -- wait receives one string, treats it as a single invalid job
+## spec and returns immediately, so this supervisor stops waiting for the
+## socat children it is supposed to reap.
+# shellcheck disable=SC2086
+wait ${pid_list}
