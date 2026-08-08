@@ -129,7 +129,15 @@ do
             break
             ;;
          -*)
-            true "$0 unknown option: ${1:-}" >&2
+            ## printf, not 'true'. This file has no 'set -x', so a
+            ## 'true "..."' produces NOTHING -- the '>&2' was redirecting the
+            ## output of 'true', which writes nothing either way, and an
+            ## unrecognised option was swallowed in silence.
+            ##
+            ## Line 83's 'true "args: ..."' is left alone deliberately: that one
+            ## is a developer trace of the parsed argument list, not a message
+            ## for the user.
+            printf '%s\n' "$0: unknown option: ${1:-}" >&2
             shift
             continue
             ;;
