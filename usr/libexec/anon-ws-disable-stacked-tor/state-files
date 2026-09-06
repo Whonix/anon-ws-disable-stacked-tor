@@ -12,9 +12,20 @@
 ## <code>/run/tor/control.authcookie</code>.
 #### meta end
 
-set -e
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
+## /run and /var/lib always exist, so --parents creates only the final
+## component and --mode therefore applies to exactly the intended directory.
+## Splitting into mkdir+chmod would instead open a window where the setgid
+## directory exists with default permissions.
+# shellcheck disable=SC2174
 mkdir --parents /run/tor --mode=2755
+# shellcheck disable=SC2174  ## as above: /var/lib exists, so this IS the deepest dir
 mkdir --parents /var/lib/tor --mode=2700
 
 ## system Tor default '/run/tor/control.authcookie' auth cookie file
