@@ -11,14 +11,7 @@
 ## <code>/usr/sbin/tor</code> simply executes <code>/usr/bin/tor</code>.
 #### meta end
 
-set -o errexit
-set -o nounset
-set -o pipefail
-set -o errtrace
-shopt -s inherit_errexit
-shopt -s shift_verbose
-
-## style-ok: allow-exec -- transparent wrapper: tor must BECOME this process
-## so its exit code, signals and stdio are the real ones the caller sees.
+## style-ok: no-strict -- no need for strict header.
+## style-ok: allow-exec -- transparent wrapper.
 
 exec /usr/bin/tor

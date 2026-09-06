@@ -1,9 +1,5 @@
 #!/bin/bash
 
-## Functions here are reached only indirectly -- through traps and the
-## option dispatch -- which shellcheck cannot follow.
-# shellcheck disable=SC2317
-
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
@@ -23,12 +19,6 @@ shopt -s inherit_errexit
 shopt -s shift_verbose
 
 ## Provides variable $GATEWAY_IP so it can be used by `source`d config snippets.
-## QUOTED. An earlier comment here claimed the word splitting was required --
-## that eval would otherwise receive the whole block as one argument. Measured,
-## that is FALSE: eval parses a single argument containing newlines as multiple
-## commands, and every assignment lands. Unquoted, the substitution was also
-## subject to PATHNAME EXPANSION, so a settings value containing a glob
-## character could turn into filenames or an eval syntax error.
 eval "$(/usr/libexec/helper-scripts/settings_echo)"
 
 ## Process configuration folders. Allows overwriting GATEWAY_IP.
@@ -44,18 +34,8 @@ bash_n_output:
 ${bash_n_output}" >&2
       exit 1
    fi
-   ## nounset OFF around the source itself, and only around it -- the loop's own
-   ## code stays strict.
-   ##
-   ## These are USER drop-ins, and the template this package SHIPS
-   ## (etc/anon-ws-disable-stacked-tor.d/30_anon-dist.conf) documents the idiom
-   ##   [ -n "$pre_command" ] || pre_command=""
-   ## which reads the variable before the line that creates it. Anyone following
-   ## our own documented example would abort the service under nounset. We
-   ## cannot enumerate what a drop-in will touch, so the snippet is not held to
-   ## strict mode; 'bash -n' above still rejects one that is syntactically bad.
+   ## User config might not be nounset-safe.
    set +o nounset
-   ## Dynamic path from the glob above; R-081 prescribes SC1090 here.
    # shellcheck disable=SC1090
    source "${i}"
    set -o nounset
@@ -71,10 +51,5 @@ fi
 
 ## Relying on systemd KillMode=control-group to kill the child processes as
 ## well as this script.
-## DELIBERATELY UNQUOTED: pgrep emits a NEWLINE-separated list of PIDs and
-## 'wait' wants them as separate arguments. Quoted -- as a blanket shellcheck
-## sweep does -- wait receives one string, treats it as a single invalid job
-## spec and returns immediately, so this supervisor stops waiting for the
-## socat children it is supposed to reap.
 # shellcheck disable=SC2086
 wait ${pid_list}

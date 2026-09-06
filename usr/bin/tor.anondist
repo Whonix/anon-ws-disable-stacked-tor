@@ -1,9 +1,5 @@
 #!/bin/bash
 
-## Functions here are reached only indirectly -- through traps and the
-## option dispatch -- which shellcheck cannot follow.
-# shellcheck disable=SC2317
-
 ## Copyright (C) 2017 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
@@ -36,8 +32,16 @@
 # PORT=127.0.0.1:44343
 # UNIX_PORT=/run/tor/control
 
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+
 source /usr/libexec/helper-scripts/light_sleep.bsh
 
+# shellcheck disable=SC2317
 exit_handler() {
    if [ ! "${socat_pid_list}" = "" ]; then
       for socat_pid_item in ${socat_pid_list} ; do
@@ -52,20 +56,7 @@ exit_handler() {
    #fi
 }
 
-set -o errexit
-set -o nounset
-set -o pipefail
-set -o errtrace
-shopt -s inherit_errexit
-shopt -s shift_verbose
-
-## Read by the EXIT trap, which is armed unconditionally, but only appended to
-## when a socat is actually started. A torrc with neither ControlPort nor
-## SocksPort therefore reached the trap with it unset, and the trap aborted.
 socat_pid_list=""
-
-## style-ok: allow-exec -- transparent wrapper: tor must BECOME this process
-## so its exit code, signals and stdio are the real ones the caller sees.
 
 verify_config() {
    /usr/bin/tor.anondist-orig "${args[@]}"
@@ -87,26 +78,14 @@ DataDirectory=""
 ControlSocket=""
 CookieAuthFile=""
 SocksPort=""
-## Genuinely unused: the code tracks socat_pid_list (line 148) and iterates
-## that in the trap. Left in place rather than removed -- deleting a
-## variable is not this pass's business -- but flagged as dead.
-# shellcheck disable=SC2034
-socat_pid=""
 
 ## Thanks to:
 ## https://mywiki.wooledge.org/BashFAQ/035
 
 while :
 do
-      ## No arguments is a valid invocation, so read $1 nounset-safely --
-      ## unset previously fell through to the catch-all arm.
       case "${1:-}" in
          -f)
-            ## '-f' REQUIRES a value. Reading a bare '$2' aborted with an
-            ## unbound-variable error under nounset; simply defaulting it to
-            ## empty was worse, because the wrapper then carried on and
-            ## eventually launched tor with no config, hanging instead of
-            ## failing. Say what is wrong and stop.
             if [ "$#" -lt 2 ]; then
                printf '%s\n' "$0: ERROR: '-f' requires a torrc file argument." >&2
                exit 1
@@ -121,22 +100,14 @@ do
             shift
             ;;
          --version)
-            exec /usr/bin/tor.anondist-orig --version
-            shift
+            /usr/bin/tor.anondist-orig --version || exit "$?"
+            exit 0
             ;;
          --)
             shift
             break
             ;;
          -*)
-            ## printf, not 'true'. This file has no 'set -x', so a
-            ## 'true "..."' produces NOTHING -- the '>&2' was redirecting the
-            ## output of 'true', which writes nothing either way, and an
-            ## unrecognised option was swallowed in silence.
-            ##
-            ## Line 83's 'true "args: ..."' is left alone deliberately: that one
-            ## is a developer trace of the parsed argument list, not a message
-            ## for the user.
             printf '%s\n' "$0: unknown option: ${1:-}" >&2
             shift
             continue
@@ -153,16 +124,14 @@ done
 ## OnionShare support for configuration option "bundled Tor".
 ## Bisq 2 support.
 if [ ! "${file_name}" = "" ]; then
-   ## '|| true' on each: a torrc need not declare every directive, and with
-   ## pipefail a grep that matches nothing fails the whole pipeline and aborts
-   ## the wrapper. A torrc without a ControlSocket is perfectly valid.
-   DataDirectory="$(cat -- "${file_name}" | grep -- DataDirectory | awk '{print $2}' || true)"
-   ControlSocket="$(cat -- "${file_name}" | grep -- ControlSocket | awk '{print $2}' || true)"
-   CookieAuthFile="$(cat -- "${file_name}" | grep -- CookieAuthFile | awk '{print $2}' || true)"
-   SocksPort="$(cat -- "${file_name}" | grep -- SocksPort | awk '{print $2}' || true)"
+   ## torrc might not declare every directive we look for.
+   DataDirectory="$(cat -- "${file_name}" | grep -- DataDirectory | awk '{print $2}')" || true
+   ControlSocket="$(cat -- "${file_name}" | grep -- ControlSocket | awk '{print $2}')" || true
+   CookieAuthFile="$(cat -- "${file_name}" | grep -- CookieAuthFile | awk '{print $2}')" || true
+   SocksPort="$(cat -- "${file_name}" | grep -- SocksPort | awk '{print $2}')" || true
    ## Bisq example Tor config:
    ## ControlPort 127.0.0.1:43649
-   ControlPort="$(cat -- "${file_name}" | grep -- ControlPort | awk '{print $2}' || true)"
+   ControlPort="$(cat -- "${file_name}" | grep -- ControlPort | awk '{print $2}')" || true
 
    ## Example SocksPort:
    ## SocksPort=24883
