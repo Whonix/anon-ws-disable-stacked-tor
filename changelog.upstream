@@ -1,3 +1,266 @@
+commit 270ae4dfa1db06024410c678298c686587236786
+Merge: a54abb1 0f16f94
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 8 10:22:55 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 0f16f9403c3cbe3e2196c85a8f6529ca0682df65
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sat Sep 5 23:59:22 2026 -0400
+
+    Polish
+
+commit 5ce18c333191f1cfff60219054bfbf0f26573a43
+Merge: a54abb1 55d7e87
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sat Sep 5 23:04:48 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit 55d7e8735248516635919a3093d4b303ead292e9
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Sat Aug 8 04:56:41 2026 -0400
+
+    CI: enrol in the pre-push static gate
+
+    This repo had no GitHub Actions workflow at all, so nothing verified its PRs on
+    the server side -- the only gate was ci-repro run locally.
+
+    The workflow file is the canonical consumer template, copied verbatim from
+    developer-meta-files/consumer-templates/.github/workflows/. It is managed: once
+    present, dm-packaging-helper-script's pkg_update_consumer_workflows keeps it in
+    sync, so it must not be hand-edited here.
+
+    Enrolment is deliberately a SEPARATE act from propagation: that function uses
+    pkg_update_if_exists, which only updates a workflow that already exists, and
+    pkg_install_dependabot_yml skips any repo with no .github/workflows/ directory.
+    Neither creates the first one. Hence this commit.
+
+    Scope: the repos this session actually changed and that ship shell code -- not
+    every repo lacking CI. Enrolling a repo consumes shared org-wide Actions
+    concurrency (20 jobs, the real limit; public repos are not minute-billed), so it
+    is worth spending where there is signal.
+
+    Verified BEFORE enrolling: 'ci-repro.sh --worktree' passes for this repo, so the
+    gate arrives green rather than turning someone's PR red on arrival.
+
+    NOTE, so it is not a surprise: creating .github/workflows/ makes this repo
+    eligible for the canonical .github/dependabot.yml on the next propagation pass,
+    which pkg_install_dependabot_yml installs into any repo that uses Actions.
+
+commit 29beda7030b45f2010a607ba1c74a0ea1a7fcc30
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 22:28:19 2026 -0400
+
+    tor.anondist: the unknown-option diagnostic never printed
+
+    The option loop's catch-all arm was:
+
+      true "$0 unknown option: ${1:-}" >&2
+
+    'true' produces no output, so the '>&2' was redirecting nothing. This file has
+    no 'set -x' either, so an unrecognised option was swallowed in complete silence
+    and the wrapper carried on.
+
+    That idiom IS meaningful in siblings like anon-dns, which run under 'set -x'
+    where xtrace makes the message visible. Here it is not. Line 83's
+    'true "args: ..."' is left alone deliberately -- that one is a developer trace
+    of the parsed argument list, not a message for the user.
+
+    Found by coderabbit.
+
+    Testing
+    -------
+
+    Gate exit 0 in an ISOLATED checkout.
+
+    Also verified: the same report's major finding, "Disable nounset while sourcing
+    drop-ins", was ALREADY FIXED in c5d0467 -- the review ran against a head that
+    predates it. Checked against the current file rather than re-fixed.
+
+commit c5d0467c27e0bcf4398ecbbd861e9e2903ed5d44
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 15:08:06 2026 -0400
+
+    socat-unix-sockets: user drop-ins are not held to nounset
+
+    The config loop sources every *.conf from three drop-in directories. Those are
+    USER files, and the template this package itself SHIPS
+    (etc/anon-ws-disable-stacked-tor.d/30_anon-dist.conf) documents the idiom
+
+      [ -n "$pre_command" ] || pre_command=""
+
+    which reads the variable before the line that creates it. So anyone following
+    our own documented example aborted the service under the nounset added by
+    R-010.
+
+    nounset is now off around the 'source' itself, and only around it -- the loop's
+    own code stays strict. We cannot enumerate what a drop-in will touch, and the
+    'bash -n' check above still rejects one that is syntactically bad.
+
+    Same shape as the Xsession.d sourcing in sandbox-app-launcher's wrapper-script:
+    third-party code, not ours to hold to our own preamble.
+
+    Found by codex.
+
+    Testing
+    -------
+
+    Gate exit 0 in an ISOLATED checkout.
+
+    The drop-in in the first case is copied VERBATIM from the shipped template:
+
+      4 pass, 0 fail
+
+      documented idiom: [ -n "$pre_command" ] || ...   old ABORTS, new PRE_COMMAND_EMPTY
+      drop-in reading any other unset variable         old ABORTS, new reaches the end
+      well-behaved drop-in that sets a value           unchanged, PRE_COMMAND=sudo
+      empty drop-in                                    unchanged
+
+    Canary: removing the exemption gives 2 pass / 2 fail, and the two that fail are
+    exactly the two drop-ins that read an unset variable.
+
+    One test-side error worth recording, since it looked like a code bug: the first
+    case asserted on "${pre_command:-UNSET}", which reports UNSET for a set-but-
+    EMPTY value too. Distinguishing unset from empty is the whole point of that
+    case, so it needs "${pre_command-UNSET}" -- no colon.
+
+commit 6dd0c2ac4f9727e4be11b610cf8229751cf4a2fd
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 13:04:05 2026 -0400
+
+    anon-ws-disable-stacked-tor: fix four defects an external review found
+
+    1. A VALID torrc ABORTED THE WRAPPER
+    --------------------------------------
+
+    verify_config() reads five directives out of the torrc with
+    'cat | grep KEY | awk'. A torrc need not declare all five -- one without a
+    ControlSocket is perfectly valid -- and with the pipefail this pass added, a
+    grep matching nothing failed the whole pipeline and aborted. Each of the five
+    now ends '|| true'.
+
+    2. THE EXIT TRAP ABORTED
+    -------------------------
+
+    socat_pid_list is read by the EXIT trap, which is armed unconditionally, but
+    only appended to when a socat is actually started. A torrc with neither
+    ControlPort nor SocksPort reached the trap with it unset. Initialised to empty.
+
+    3. '-f' AS THE LAST ARGUMENT
+    ------------------------------
+
+    'file_name="$2"' aborted with an unbound-variable error. The first fix --
+    defaulting it to empty -- was WORSE and the harness caught it: the wrapper then
+    carried on and eventually launched tor with no config, HANGING to the test
+    timeout instead of failing. It now says what is wrong and exits 1, matching the
+    old exit code with an explanation the old code did not give.
+
+    4. MY JUSTIFICATION FOR THE SC2046 WAIVER WAS FACTUALLY WRONG
+    ---------------------------------------------------------------
+
+    The comment on 'eval $(/usr/libexec/helper-scripts/settings_echo)' claimed the
+    word splitting was required -- that quoting would pass the whole block to eval
+    as a single argument. Measured, that is false:
+
+      settings_echo() { printf '%s\n' 'GATEWAY_IP=10.0.0.1' 'GATEWAY_IP6=fd00::1'; }
+      eval "$(settings_echo)"
+      -> GATEWAY_IP=10.0.0.1 GATEWAY_IP6=fd00::1
+
+    eval parses a single argument containing newlines as multiple commands, and
+    every assignment lands. Meanwhile the UNQUOTED form was subject to pathname
+    expansion, so a settings value containing a glob character could become
+    filenames or an eval syntax error. Both sites are now quoted and the wrong
+    comment is gone.
+
+    Testing
+    -------
+
+    Gate exit 0 in an ISOLATED checkout.
+
+      7 same/pass, 0 differing
+
+    Two cases added for paths the harness never took -- a torrc that omits
+    directives, and '-f' given last. Every earlier case ran the wrapper with no
+    torrc at all, which is why none of this surfaced.
+
+commit 49d465331e39c22eb0ac7118a2f17922149c330c
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 11:58:15 2026 -0400
+
+    anon-ws-disable-stacked-tor: restore the deliberate splitting of pid_list
+
+    A blanket 'shellcheck -f diff' sweep quoted
+
+      wait ${pid_list}   ->   wait "${pid_list}"
+
+    pgrep emits a NEWLINE-separated list of PIDs and 'wait' wants them as separate
+    arguments. Quoted, wait receives one string, treats it as a single invalid job
+    spec and returns immediately -- so this supervisor stops waiting for the socat
+    children it exists to reap. Unquoted again, with an SC2086 waiver.
+
+    Found by the same systematic audit that caught sandbox-app-launcher's
+    bwrap_args and pgrep list, hardened-kernel's curl options, and msgcollector's
+    percentage_maybe_add.
+
+    Gate exit 0 in an ISOLATED checkout. The differential harness reports
+    socat-unix-sockets unchanged.
+
+    SEPARATE, UNRESOLVED: the same harness now reports systemd-unit-files-generator
+    as differing (old exit 1, new exit 0), and it reported 5 same / 0 differing for
+    the identical code earlier in this pass. The same harness giving two different
+    answers for the same inputs points at state leaking between runs rather than at
+    a code change -- the difference also appears with the COMMITTED state, which
+    predates this commit. Tracked separately rather than assumed benign.
+
+commit 2d900b751ba0e2730b0bea2b77892ac125fcdf4a
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 09:05:10 2026 -0400
+
+    anon-ws-disable-stacked-tor: R-010 strict for the 5 standalone scripts
+
+    Real nounset traps fixed, all of them invisible to the static gate:
+    - systemd-unit-files-generator: six '[ -n "${V}" ] || V=x' defaults --
+      system_run, generated_comment, GATEWAY_IP, GATEWAY_IP6 -- across BOTH the
+      system-runtime and package-build branches. That idiom aborts on the unset
+      read before it can apply the default. Each became '${V:-default}'.
+    - usr/bin/tor.anondist read a bare $1 in its option 'case'. No arguments is
+      a valid invocation, and unset previously fell through to the catch-all
+      arm, which '${1:-}' reproduces.
+
+    Waivers, each with a stated reason rather than a blanket silence:
+    - SC2174 on the two 'mkdir --parents ... --mode=' calls: /run and /var/lib
+      always exist, so --parents creates only the final component and --mode
+      applies to exactly the intended directory. Splitting into mkdir+chmod
+      would instead open a window where the setgid directory exists with
+      default permissions.
+    - SC2046 on 'eval $(settings_echo)': the word splitting is the point --
+      settings_echo emits assignments eval must see as separate words.
+    - SC1090 on the two glob-driven 'source "${i}"' loops (R-081).
+    - SC2317 file-wide where functions are reached only through traps and the
+      option dispatch.
+    - SC2034 on socat_pid, which is genuinely dead -- the code tracks
+      socat_pid_list instead. Flagged rather than deleted; removing a variable
+      is not this pass's business.
+    - allow-exec on both tor.anondist wrappers: tor must BECOME the process so
+      its exit code, signals and stdio are the real ones.
+
+    Also SC2145 '${args[@]}' -> '${args[*]}' in a message string, SC2128
+    "${BASH_SOURCE[0]}", SC2269 on a deliberate self-assignment, echo -> printf.
+
+    Verified in an ISOLATED checkout (ci-repro.sh), gate exit 0. Sandbox
+    differential vs the pre-change scripts, output AND exit code: 5 cases, all
+    identical.
+
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+commit a54abb15f8bcd837ecf4200947f0d4ea54426ed0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 20 22:32:28 2026 +0000
+
+    bumped changelog version
+
 commit 709ab446719c772e6f2942c817d93b357a3d072e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 20 16:57:33 2026 -0400
