@@ -11,4 +11,7 @@
 ## <code>/usr/sbin/tor</code> simply executes <code>/usr/bin/tor</code>.
 #### meta end
 
+## style-ok: no-strict -- no need for strict header.
+## style-ok: allow-exec -- transparent wrapper.
+
 exec /usr/bin/tor

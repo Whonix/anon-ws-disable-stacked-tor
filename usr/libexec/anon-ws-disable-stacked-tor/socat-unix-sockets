@@ -11,35 +11,45 @@
 ## <code>socat-unix-sockets</code> starter.
 #### meta end
 
-set -e
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
 ## Provides variable $GATEWAY_IP so it can be used by `source`d config snippets.
-eval $(/usr/libexec/helper-scripts/settings_echo)
+eval "$(/usr/libexec/helper-scripts/settings_echo)"
 
 ## Process configuration folders. Allows overwriting GATEWAY_IP.
 
 shopt -s nullglob
 for i in /etc/anon-ws-disable-stacked-tor.d/*.conf /rw/anon-ws-disable-stacked-tor.d/*.conf /usr/local/etc/anon-ws-disable-stacked-tor.d/*.conf; do
    bash_n_exit_code="0"
-   bash_n_output="$(bash -n "$i" 2>&1)" || { bash_n_exit_code="$?" ; true; };
-   if [ ! "$bash_n_exit_code" = "0" ]; then
-      echo "Invalid config file: $i
-bash_n_exit_code: $bash_n_exit_code
+   bash_n_output="$(bash -n "${i}" 2>&1)" || { bash_n_exit_code="$?" ; true; };
+   if [ ! "${bash_n_exit_code}" = "0" ]; then
+      printf '%s\n' "Invalid config file: ${i}
+bash_n_exit_code: ${bash_n_exit_code}
 bash_n_output:
-$bash_n_output" >&2
+${bash_n_output}" >&2
       exit 1
    fi
-   source "$i"
+   ## User config might not be nounset-safe.
+   set +o nounset
+   # shellcheck disable=SC1090
+   source "${i}"
+   set -o nounset
 done
 
 ## '|| true' in case no child process is run.
 pid_list="$(pgrep -P "$$")" || true
 
-if [ "$pid_list" = "" ]; then
-   echo "INFO: No processes launched into background, ok."
+if [ "${pid_list}" = "" ]; then
+   printf '%s\n' "INFO: No processes launched into background, ok."
    exit 125
 fi
 
 ## Relying on systemd KillMode=control-group to kill the child processes as
 ## well as this script.
-wait $pid_list
+# shellcheck disable=SC2086
+wait ${pid_list}
